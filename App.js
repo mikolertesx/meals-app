@@ -3,6 +3,7 @@ import { enableScreens } from "react-native-screens";
 import React, { useState } from "react";
 import * as Font from "expo-font";
 import MealsNavigator from "./navigation/MealsNavigator";
+import { StatusBar } from "expo-status-bar";
 
 enableScreens();
 
@@ -22,5 +23,10 @@ export default function App() {
     );
   }
 
-  return <MealsNavigator />;
+  return (
+    <>
+      <StatusBar style="light" />
+      <MealsNavigator />
+    </>
+  );
 }
