@@ -1,4 +1,5 @@
 import React from "react";
+import { Text } from "react-native";
 import { Platform } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -19,6 +20,12 @@ import Colors from "../constants/Colors";
 const defaultStackNavOptions = {
   headerStyle: {
     backgroundColor: Platform.OS === "android" ? Colors.primaryColor : "white",
+  },
+  headerTitleStyle: {
+    fontFamily: "open-sans-bold",
+  },
+  headerBackTitleStyle: {
+    fontFamily: "open-sans",
   },
   headerTintColor: Platform.OS === "android" ? "white" : Colors.primaryColor,
   headerTitle: "Meal App",
@@ -62,6 +69,12 @@ const tabScreenConfig = {
         );
       },
       tabBarColor: Colors.primaryColor,
+      tabBarLabel:
+        Platform.OS === "android" ? (
+          <Text style={{ fontFamily: "open-sans" }}>Meals!</Text>
+        ) : (
+          "Meals"
+        ),
     },
   },
   Favorites: {
@@ -84,6 +97,9 @@ const MealsFavTabNavigator =
       })
     : createBottomTabNavigator(tabScreenConfig, {
         tabBarOptions: {
+          labelStyle: {
+            fontFamily: "open-sans-bold",
+          },
           activeTintColor: Colors.accentColor,
         },
       });
