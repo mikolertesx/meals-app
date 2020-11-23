@@ -4,8 +4,17 @@ import React, { useState } from "react";
 import * as Font from "expo-font";
 import MealsNavigator from "./navigation/MealsNavigator";
 import { StatusBar } from "expo-status-bar";
+import { createStore, combineReducers } from "redux";
+import { Provider } from "react-redux";
+import mealsReducer from "./store/reducers/meals";
 
 enableScreens();
+
+const rootReducer = combineReducers({
+  meals: mealsReducer,
+});
+
+const store = createStore(rootReducer);
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -26,7 +35,9 @@ export default function App() {
   return (
     <>
       <StatusBar style="light" />
-      <MealsNavigator />
+      <Provider store={store}>
+        <MealsNavigator />
+      </Provider>
     </>
   );
 }
